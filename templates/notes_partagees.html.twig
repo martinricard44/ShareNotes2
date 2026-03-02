@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Notes partagées avec moi</h1>
+
+<ul>
+    {% for note in notes %}
+        <li>
+            <strong>{{ note.title }}</strong>
+            <a href="{{ path('note_show', {id: note.id}) }}">Voir</a>
+        </li>
+    {% else %}
+        <li>Aucune note partagée</li>
+    {% endfor %}
+</ul>
+
+{% endblock %} {# Attention, ceci est la Première version, elle pourrait changer dans les jours à venir #}
