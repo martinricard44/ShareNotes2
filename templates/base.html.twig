@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}ShareNotes{% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block meta_description %}Gestion et partage de vos notes en toute simplicité.{% endblock %}">
+    
+    <!-- Optimisation Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     {% block stylesheets %}
@@ -12,13 +17,15 @@
 </head>
 <body class="{% block body_class %}{% endblock %}">
 
-<div class="app-container">
-    {% block body %}{% endblock %}
-</div>
+    <div id="app" class="app-container">
+        {% block header %}{% endblock %}
+        {% block body %}{% endblock %}
+        {% block footer %}{% endblock %}
+    </div>
 
-{% block javascripts %}
-    {{ encore_entry_script_tags('app') }}
-{% endblock %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
 
 </body>
-</html> {# Attention, ceci est la Première version, elle pourrait changer dans les jours à venir #}
+</html>

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Supprimer le compte{% endblock %}
+
+{% block body %}
+<h1>Supprimer mon compte</h1>
+
+<p>Attention : cette action est irréversible !</p>
+
+<form method="post">
+    <button type="submit" style="background-color:red; color:white;">
+        Supprimer mon compte
+    </button>
+</form>
+
+{% endblock %}

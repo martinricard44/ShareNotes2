@@ -1,8 +1,9 @@
 
 body {
     margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background-color: #f4f6f9;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #212529;
 }
 
 
@@ -19,6 +20,7 @@ body {
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 
@@ -26,62 +28,24 @@ body {
     border-radius: 18px;
     padding: 16px;
     background: #ffffff;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
     margin-bottom: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.note-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.08);
 }
 
 .note-card h4 {
-    margin: 0 0 8px 0;
+    margin: 0 0 10px 0;
+    font-weight: 600;
 }
 
 
 .rounded-btn {
     border-radius: 30px !important;
-}
-
-
-.dark-mode {
-    background-color: #121212 !important;
-    color: white !important;
-}
-
-.dark-mode .app-container {
-    background-color: #1e1e1e;
-}
-
-.dark-mode .note-card {
-    background-color: #2a2a2a;
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #ffffff;
-    color: #212529;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    margin-top: 50px;
-    max-width: 400px;
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-h1, h2 {
-    text-align: center;
-    margin-bottom: 25px;
-    font-weight: 600;
-    color: #212529;
-}
-
-input.form-control, select.form-control, textarea.form-control {
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ced4da;
 }
 
 .btn-primary {
@@ -100,10 +64,14 @@ input.form-control, select.form-control, textarea.form-control {
     border-color: #0056b3;
 }
 
-.alert {
-    font-size: 0.9rem;
-    padding: 10px 15px;
+
+input.form-control,
+select.form-control,
+textarea.form-control {
     border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
 }
 
 .form-check-input {
@@ -115,11 +83,39 @@ input.form-control, select.form-control, textarea.form-control {
     font-size: 0.9rem;
 }
 
+
+.alert {
+    font-size: 0.9rem;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+
+.dark-mode {
+    background-color: #121212 !important;
+    color: white !important;
+}
+
+.dark-mode .app-container {
+    background-color: #1e1e1e;
+}
+
+.dark-mode .note-card {
+    background-color: #2a2a2a;
+    box-shadow: none;
+}
+
+.dark-mode .btn-primary {
+    background-color: #3a8dff;
+    border-color: #3a8dff;
+}
+
+
 @media (max-width: 576px) {
-    .container {
-        margin-top: 20px;
-        padding: 20px;
+    .app-container {
+        padding: 15px;
     }
+
     .btn-primary {
         font-size: 0.9rem;
     }

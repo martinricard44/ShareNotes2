@@ -1,11 +1,20 @@
-<h1>Hi! Please confirm your email!</h1>
+<h1>Welcome!</h1>
 
 <p>
-    Please confirm your email address by clicking the following link: <br><br>
-    <a href="{{ signedUrl|raw }}">Confirm my Email</a>.
-    This link will expire in {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+    Thank you for registering with us. To complete your registration, please confirm your email address by clicking the link below:
+</p>
+
+<p style="text-align: center; margin: 20px 0;">
+    <a href="{{ signedUrl|raw }}" style="display: inline-block; padding: 12px 24px; background-color: #1a73e8; color: #ffffff; text-decoration: none; border-radius: 4px;">
+        Confirm My Email
+    </a>
 </p>
 
 <p>
-    Cheers!
+    Please note: this link will expire in {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+</p>
+
+<p>
+    Best regards,<br>
+    The ShareNotes Team
 </p>

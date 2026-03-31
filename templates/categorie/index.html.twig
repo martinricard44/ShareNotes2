@@ -1,20 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CategorieController!{% endblock %}
+{% block title %}Catégories{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="app-container">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <header class="page-header">
+        <h1 class="page-title">Catégories</h1>
+    </header>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/laragon/www/projets/sharenotes/src/Controller/CategorieController.php</code></li>
-        <li>Your template at <code>C:/laragon/www/projets/sharenotes/templates/categorie/index.html.twig</code></li>
-    </ul>
+    {% if categories is not empty %}
+        {% for categorie in categories %}
+            <article class="note-card">
+                <h4 class="note-title">{{ categorie.nomCategorie }}</h4>
+                <p>{{ categorie.description|length > 100 ? categorie.description|slice(0, 100) ~ '...' : categorie.description }}</p>
+                <a href="{{ path('categorie_show', {'id': categorie.id}) }}" class="btn btn-primary rounded-btn mt-2">
+                    Voir les notes crées
+                </a>
+            </article>
+        {% endfor %}
+    {% else %}
+        <div class="note-card text-center">
+            <p>Oops, aucune catégorie disponible.</p>
+        </div>
+    {% endif %}
+
 </div>
 {% endblock %}
