@@ -120,3 +120,76 @@ textarea.form-control {
         font-size: 0.9rem;
     }
 }
+
+.commentaire-card {
+    background-color: #fff;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.commentaire-card .author {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #2a2a2a;
+}
+
+.commentaire-card .date {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-bottom: 8px;
+}
+
+.commentaire-card .text {
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.vote-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.vote-button {
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    background-color: #f1f3f5;
+    transition: background-color 0.2s;
+}
+
+.vote-button:hover {
+    background-color: #e2e6ea;
+}
+
+.vote-count {
+    font-weight: 600;
+    color: #007bff;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}

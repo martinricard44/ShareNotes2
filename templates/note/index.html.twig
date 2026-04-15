@@ -6,11 +6,10 @@
 <div class="app-container">
 
     <header class="page-header">
-        <h1 class="page-title">Mes notes</h1>
-        <a href="{{ path('note_new') }}" class="btn btn-primary rounded-btn mb-3">
-            Créer une nouvelle note
-        </a>
-    </header>
+        <h1 class="page-title">Notes</h1>
+       <a href="{{ path('note_new') }}" class="btn btn-primary rounded-btn mb-3">
+    <span class="material-icons">add</span>
+</a>
 
     {% if notes is not empty %}
         {% for note in notes %}
