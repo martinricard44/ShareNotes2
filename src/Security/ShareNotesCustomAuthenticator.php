@@ -20,7 +20,7 @@ class ShareNotesCustomAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
-    public const LOGIN_ROUTE = 'app_login';
+    public const LOGIN_ROUTE = 'app_note';
 
     public function __construct(private UrlGeneratorInterface $urlGenerator)
     {
@@ -44,13 +44,15 @@ class ShareNotesCustomAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
+        
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
-        // return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        
+        return new RedirectResponse(
+            $this->urlGenerator->generate('app_register')
+        );
     }
 
     protected function getLoginUrl(Request $request): string

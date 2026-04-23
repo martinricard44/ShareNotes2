@@ -1,37 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Créer une note{% endblock %}
+{% block title %}Créer une note - ShareNotes {% endblock %}
 
 {% block body %}
+<div class="overlay">
 
-<div class="app-container">
+    <div class="form-header">
+        <h1>Créer une note</h1>
+        <p>Rédige et publie une nouvelle note</p>
+    </div>
 
-    <h1>Créer une note</h1>
+    <div class="info-box">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/OOjs_UI_icon_alert-warning.svg/960px-OOjs_UI_icon_alert-warning.svg.png" alt="info">
+        <p>
+            Les notes publiées sont visibles par tous. Évite de partager des informations personnelles ou sensibles.
+        </p>
+    </div>
 
-    <form method="post">
-        <div class="mb-3">
-            <input type="text" name="title" placeholder="Titre" class="form-control" required>
+    <form method="post" class="note-form">
+        <input type="hidden" name="_token" value="{{ csrf_token('create_note') }}">
+
+        <div class="input-group">
+            <input type="text" name="title" placeholder="Titre de la note" required>
         </div>
 
-        <div class="mb-3">
-            <textarea name="content" class="form-control"></textarea>
+        <div class="input-group">
+            <textarea name="content" placeholder="Écris ta note..." required></textarea>
         </div>
 
-        <button class="btn btn-primary">Enregistrer</button>
+        <div class="form-actions">
+            <button class="btn btn-primary">Publier</button>
+            <a href="{{ path('app_note') }}" class="btn btn-secondary">Annuler</a>
+        </div>
     </form>
 
 </div>
-
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js"></script>
-
-<script>
-  tinymce.init({
-    selector: 'textarea',
-    height: 300,
-    menubar: false,
-    plugins: 'lists link',
-    toolbar: 'undo redo | bold italic underline | bullist numlist | link'
-  });
-</script>
-
 {% endblock %}

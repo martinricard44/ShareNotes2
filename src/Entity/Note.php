@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\NoteRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: NoteRepository::class)]
@@ -21,23 +19,20 @@ class Note
     #[ORM\Column(type: "text")]
     private ?string $content = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $shareLink = null;
-
-    #[ORM\Column(type: "datetime")]
+    #[ORM\Column(type: "datetime_immutable")]
     private ?\DateTimeInterface $createdAt = null;
 
-    #[ORM\Column(type: "datetime")]
+    #[ORM\Column(type: "datetime_immutable")]
     private ?\DateTimeInterface $dateModification = null;
 
     #[ORM\Column(length: 50)]
     private ?string $statut = null;
 
-   
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->dateModification = new \DateTimeImmutable();
+        $this->statut = 'brouillon';
     }
 
     public function getId(): ?int
@@ -64,17 +59,7 @@ class Note
     public function setContent(string $content): static
     {
         $this->content = $content;
-        return $this;
-    }
-
-    public function getShareLink(): ?string
-    {
-        return $this->shareLink;
-    }
-
-    public function setShareLink(string $shareLink): static
-    {
-        $this->shareLink = $shareLink;
+        $this->dateModification = new \DateTimeImmutable();
         return $this;
     }
 
@@ -83,21 +68,9 @@ class Note
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): static
-    {
-        $this->createdAt = $createdAt;
-        return $this;
-    }
-
     public function getDateModification(): ?\DateTimeInterface
     {
         return $this->dateModification;
-    }
-
-    public function setDateModification(\DateTimeInterface $dateModification): static
-    {
-        $this->dateModification = $dateModification;
-        return $this;
     }
 
     public function getStatut(): ?string
@@ -110,5 +83,4 @@ class Note
         $this->statut = $statut;
         return $this;
     }
-
 }

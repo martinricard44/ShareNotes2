@@ -52,7 +52,7 @@ class RegistrationController extends AbstractController
 
             // do anything else you need here, like send an email
 
-            return $security->login($user, ShareNotesCustomAuthenticator::class, 'main');
+           return $security->login($user, null, 'main');
         }
 
         return $this->render('registration/register.html.twig', [
@@ -63,11 +63,9 @@ class RegistrationController extends AbstractController
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         // validate email confirmation link, sets User::isVerified=true and persists
         try {
-            /** @var Utilisateur $user */
             $user = $this->getUser();
             $this->emailVerifier->handleEmailConfirmation($request, $user);
         } catch (VerifyEmailExceptionInterface $exception) {

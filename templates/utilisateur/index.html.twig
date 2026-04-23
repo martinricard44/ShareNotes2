@@ -1,31 +1,75 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Mon compte{% endblock %}
 
 {% block body %}
-<div class="container mt-5" style="max-width: 400px;">
-    <h2 class="mb-4">Connexion</h2>
+<div class="account-container">
 
-    {% if error %}
-        <div class="alert alert-danger">
-            {{ error.messageKey|trans(error.messageData, 'security') }}
-        </div>
-    {% endif %}
+    <div class="account-card">
 
-    <form method="post">
-        <div class="mb-3">
-            <label>Email</label>
-            <input type="email" name="_username" value="{{ last_username }}" class="form-control" required autofocus>
-        </div>
+        <h1 class="account-title">Mon compte</h1>
 
-        <div class="mb-3">
-            <label>Mot de passe</label>
-            <input type="password" name="_password" class="form-control" required>
+        <div class="account-info">
+            <p>
+                Connecté en tant que <strong>{{ app.user.prenom }}</strong><br>
+                <span class="account-email">{{ app.user.email }}</span>
+            </p>
+            <small class="account-note">
+                Certaines fonctionnalités ne sont pas disponibles pour le moment.
+            </small>
         </div>
 
-        <button class="btn btn-primary w-100" type="submit">
-            Se connecter
-        </button>
-    </form>
+        <div class="account-section">
+
+            <div class="account-item disabled">
+                <img src="https://cdn-icons-png.freepik.com/512/8452/8452627.png" class="account-icon">
+                <div class="account-text">
+                    <h3>Mot de passe</h3>
+                    <p>La modification du mot de passe est actuellement indisponible.</p>
+                </div>
+            </div>
+
+            <div class="account-item">
+    <a href="{{ path('app_note') }}" class="account-link">
+        <img src="https://cdn-icons-png.freepik.com/512/8452/8452627.png" class="account-icon">
+        <div class="account-text">
+            <h3>Mes notes</h3>
+            <p>Gérer vos notes.</p>
+        </div>
+    </a>
 </div>
-{% endblock %}
+
+            //<div class="account-item disabled">
+                <img src="https://cdn-icons-png.freepik.com/512/8452/8452627.png" class="account-icon">
+                <div class="account-text">
+                    <h3>Supprimer mon compte</h3>
+                    <p>La suppression du compte est actuellement indisponible.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <a href="{{ path('app_logout') }}" class="logout-btn" id="logoutBtn">
+            Se déconnecter
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+document.getElementById('logoutBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const btn = this;
+
+    btn.innerHTML = '<span class="spinner"></span> Déconnexion...';
+    btn.style.pointerEvents = 'none';
+
+    setTimeout(() => {
+        window.location.href = btn.href;
+    }, 10000);
+});
+</script>
+
+{% endblock %} 

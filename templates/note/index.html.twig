@@ -1,40 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mes notes{% endblock %}
+{% block title %}Notes - ShareNotes{% endblock %}
 
 {% block body %}
-<div class="app-container">
 
-    <header class="page-header">
-        <h1 class="page-title">Notes</h1>
-       <a href="{{ path('note_new') }}" class="btn btn-primary rounded-btn mb-3">
-    <span class="material-icons">add</span>
+<div class="overlay">
+
+  <header class="page-header">
+    <h1 class="page-title">Notes</h1>
+
+    <div class="actions">
+        <a href="{{ path('note_new') }}" class="btn btn-primary">
+            Créer une note
+        </a>
+
+        <a href="{{ path('app_logout') }}" class="btn logout-btn" id="logoutBtn">
+    Se déconnecter
 </a>
+    </div>
+</header>
 
     {% if notes is not empty %}
         {% for note in notes %}
-            <article class="note-card">
-                <h4 class="note-title">{{ note.title }}</h4>
 
-                <p>
-                    {{ note.content|length > 100 
-                        ? note.content|slice(0,100)|striptags('<strong><b><em><i><u><ul><ol><li><a>')|raw ~ '...' 
-                        : note.content|striptags('<strong><b><em><i><u><ul><ol><li><a>')|raw 
-                    }}
-                </p>
+            <a href="{{ path('note_show', {'id': note.id}) }}" class="note-card-link">
+                <article class="note-card">
+                    <h4 class="note-title">{{ note.title }}</h4>
 
-                <p><small>Statut : {{ note.statut }}</small></p>
+                    <p>
+                        {{ note.content|length > 100 
+                            ? note.content|slice(0,100)|striptags('<strong><b><em><i><u><ul><ol><li><a>')|raw ~ '...' 
+                            : note.content|striptags('<strong><b><em><i><u><ul><ol><li><a>')|raw 
+                        }}
+                    </p>
+                </article>
+            </a>
 
-                <a href="{{ path('note_show', {'id': note.id}) }}" class="btn btn-primary rounded-btn mt-2">
-                    Voir la note
-                </a>
-            </article>
         {% endfor %}
     {% else %}
         <div class="note-card text-center">
-            <p>Oops, vous n'avez encore créé aucune note!</p>
+            <p>Nous n'avons pas trouvé de Notes publiées.</p>
         </div>
     {% endif %}
 
 </div>
+
 {% endblock %}

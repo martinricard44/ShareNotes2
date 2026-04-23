@@ -1,39 +1,58 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Créer un compte - ShareNotes{% endblock %}
+
 {% block body %}
-<div class="container mt-5" style="max-width: 400px;">
-    <h2 class="mb-4">Créer un compte</h2>
+<div class="auth-container">
+    <div class="auth-card">
 
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger">
-            {{ flash_error }}
-        </div>
-    {% endfor %}
+        <img src="S.png" class="auth-logo">
 
-    {{ form_start(registrationForm) }}
+        <h1 class="auth-title">Bienvenue sur ShareNotes!</h1>
 
-        <div class="mb-3">
+        {% for flash_error in app.flashes('verify_email_error') %}
+            <div class="auth-error">
+                {{ flash_error }}
+            </div>
+        {% endfor %}
+
+        {{ form_start(registrationForm) }}
+
+        <div class="input-group">
             {{ form_label(registrationForm.email) }}
             {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
             {{ form_errors(registrationForm.email) }}
         </div>
 
-        <div class="mb-3">
+        <div class="input-group">
             {{ form_label(registrationForm.plainPassword) }}
             {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
             {{ form_errors(registrationForm.plainPassword) }}
         </div>
 
-        <div class="form-check mb-3">
-            {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
-            {{ form_label(registrationForm.agreeTerms, null, {'label_attr': {'class': 'form-check-label'}}) }}
+        <div class="input-group">
+            {{ form_label(registrationForm.prenom) }}
+            {{ form_widget(registrationForm.prenom, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(registrationForm.prenom) }}
+        </div>
+
+        <div class="remember-me">
+            {{ form_widget(registrationForm.agreeTerms) }}
+            {{ form_label(registrationForm.agreeTerms) }}
             {{ form_errors(registrationForm.agreeTerms) }}
         </div>
 
-        <button type="submit" class="btn btn-primary w-100">
-           Créer votre compte gratuit
+        <button type="submit" class="auth-btn">
+            Créer mon compte
         </button>
 
-    {{ form_end(registrationForm) }}
+        {{ form_end(registrationForm) }}
+
+        <div class="auth-footer">
+            Déjà un compte ?
+            <a href="{{ path('app_login') }}">Se connecter</a>
+        </div>
+
+    </div>
 </div>
 {% endblock %}
